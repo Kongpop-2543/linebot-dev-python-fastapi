@@ -21,7 +21,6 @@ load_dotenv()
 app = FastAPI()
 
 get_access_token = os.getenv("ACCESS_TOKEN")
-print(get_access_token)
 configuration = Configuration(access_token='ACCESS_TOKEN')
 get_channel_secret = os.getenv("CHANNEL_SECRET")
 handler = WebhookHandler(channel_secret = get_channel_secret)
@@ -34,7 +33,7 @@ async def callback(request: Request, x_line_signature: str = Header(None)):
         handler.handle(body_str, x_line_signature)
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
-        raise HTTPException(stauts_code = 400, detail = "Invalid signature.")
+        raise HTTPException(status_code = 400, detail = "Invalid signature.")
     
     return "OK"
 
