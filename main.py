@@ -21,7 +21,7 @@ load_dotenv()
 app = FastAPI()
 
 get_access_token = os.getenv("ACCESS_TOKEN")
-configuration = Configuration(access_token='ACCESS_TOKEN')
+configuration = Configuration(access_token=get_access_token)
 get_channel_secret = os.getenv("CHANNEL_SECRET")
 handler = WebhookHandler(channel_secret = get_channel_secret)
 
