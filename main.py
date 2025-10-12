@@ -16,6 +16,8 @@ from linebot.v3.messaging import (
     ReplyMessageRequest,
     TextMessage
 )
+
+from response_message import response_message
 load_dotenv()
 
 app = FastAPI()
@@ -42,7 +44,7 @@ def handle_message(event: MessageEvent):
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
 
-        reply_message = "Hello from Dev Environment"
+        reply_message = response_message()
 
         line_bot_api.reply_message(
             ReplyMessageRequest(
