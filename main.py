@@ -46,6 +46,11 @@ def handle_message(event: MessageEvent):
 
         reply_message = response_message(event)
 
+        # handle for None reply_message
+        if reply_message is None:
+            print("Sorry, You break the rules. Cannot understand your message.")
+            return None
+    
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token = event.reply_token,
