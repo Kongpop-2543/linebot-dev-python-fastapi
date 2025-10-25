@@ -23,7 +23,8 @@ load_dotenv()
 
 app = FastAPI()
 
-get_access_token, get_channel_secret = get_secret()
+get_access_token = get_secret("ACCESS_TOKEN")
+get_channel_secret = get_secret("CHANNEL_SECRET")
 
 #get_access_token = os.getenv("ACCESS_TOKEN")
 configuration = Configuration(access_token=get_access_token)
@@ -39,7 +40,6 @@ async def callback(request: Request, x_line_signature: str = Header(None)):
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
         raise HTTPException(status_code = 400, detail = "Invalid signature.")
-    
     return "OK"
 
 @handler.add(MessageEvent, message = TextMessageContent)
