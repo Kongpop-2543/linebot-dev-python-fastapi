@@ -17,7 +17,7 @@ from linebot.v3.messaging import (
     TextMessage
 )
 
-from response_message import response_message
+from helper.response_message import response_message
 load_dotenv()
 
 app = FastAPI()
