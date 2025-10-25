@@ -18,13 +18,16 @@ from linebot.v3.messaging import (
 )
 
 from helper.response_message import response_message
+from helper.authen_secret_gcp import get_secret
 load_dotenv()
 
 app = FastAPI()
 
-get_access_token = os.getenv("ACCESS_TOKEN")
+get_access_token, get_channel_secret = get_secret()
+
+#get_access_token = os.getenv("ACCESS_TOKEN")
 configuration = Configuration(access_token=get_access_token)
-get_channel_secret = os.getenv("CHANNEL_SECRET")
+#get_channel_secret = os.getenv("CHANNEL_SECRET")
 handler = WebhookHandler(channel_secret = get_channel_secret)
 
 @app.post("/callback")
