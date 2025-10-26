@@ -2,4 +2,3 @@ fastapi
 line-bot-sdk
 uvicorn
 python-dotenv
-google-cloud-secret-manager
